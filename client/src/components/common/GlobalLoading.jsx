@@ -11,7 +11,7 @@ const GlobalLoading = () => {
         }else{
             setTimeout(()=>{
                 setIsLoading(false);
-            },1500)
+            },1000)
         }
     },[globalLoading])
   return (

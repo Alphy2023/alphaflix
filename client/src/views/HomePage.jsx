@@ -1,10 +1,12 @@
-import React from 'react'
+import CustomHelmet from "../components/common/CustomHelmet"
 
 const HomePage = () => {
   return (
-    <div>
+    <>
+    <CustomHelmet title="AlphaFlix"/>
+
       home page
-    </div>
+    </>
   )
 }
 

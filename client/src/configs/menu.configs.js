@@ -1,10 +1,10 @@
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlinedIcon";
-import SlideshowOutlinedIcon from "@mui/icons-material/SlideshowOutlinedIcon";
-import LiveTvOutlinedIcon from "@mui/icons-material/LiveTvOutlinedIcon";
-import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlinedIcon";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlinedIcon";
-import RateReviewOutlinedIcon from "@mui/icons-material/RateReviewOutlinedIcon";
-import LockResetOutlinedIcon from "@mui/icons-material/LockResetOutlinedIcon";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import SlideshowOutlinedIcon from "@mui/icons-material/SlideshowOutlined";
+import LiveTvOutlinedIcon from "@mui/icons-material/LiveTvOutlined";
+import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import RateReviewOutlinedIcon from "@mui/icons-material/RateReviewOutlined";
+import LockResetOutlinedIcon from "@mui/icons-material/LockResetOutlined";
 const main = [
   {
     display: "home",
