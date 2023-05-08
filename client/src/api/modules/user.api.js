@@ -1,0 +1,51 @@
+import privateClient from "../client/private.client";
+import publicClient from "../client/public.client";
+
+const userEndpoint = {
+    signIn:"user/signin",
+    signUp:"user/signup",
+    getInfo:"user/info",
+    passwordUpdate:"user/update-password",
+};
+
+const userApi = {
+    signIn: async ({username,password}) =>{
+        try {
+            const res = await publicClient.post(
+                userEndpoint.signIn,
+                {username,password}
+            )
+            return {res}
+        } catch (error) {return {error}}
+    },
+    signUp: async ({username,password,confirmPassword,email,displayName}) =>{
+        try {
+            const res = await publicClient.post(userEndpoint.signUp, {
+              username,
+              password,
+              confirmPassword,
+              email,
+              displayName,
+            });
+            return { res };
+        } catch (error) {return {error}}
+    },
+    getInfo: async () =>{
+        try {
+            const res = await privateClient.get(userEndpoint.getInfo);
+            return { res };
+        } catch (error) {return {error}}
+    },
+    passwordUpdate: async ({password,newPassword,confirmNewPassword}) =>{
+        try {
+            const res = await privateClient.put(userEndpoint.passwordUpdate, {
+              password,
+              newPassword,
+              confirmNewPassword,
+            });
+            return { res };
+        } catch (error) {return {error}}
+    }
+};
+
+export default userApi;
