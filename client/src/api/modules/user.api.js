@@ -11,12 +11,12 @@ const userEndpoint = {
 const userApi = {
     signIn: async ({username,password}) =>{
         try {
-            const res = await publicClient.post(
+            const response = await publicClient.post(
                 userEndpoint.signIn,
                 {username,password}
             )
-            return {res}
-        } catch (error) {return {error}}
+            return {response}
+        } catch (err) {return {err}}
     },
     signUp: async ({username,password,confirmPassword,email,displayName}) =>{
         try {

@@ -42,7 +42,7 @@ userRouter.post(
 )
 // login
 userRouter.post(
-    "/sigin",
+    "/signin",
     body("username")
     .exists().withMessage("Username is Required!")
     .isLength({min:8}).withMessage("Username should be a minimum of 8 characters!"),
