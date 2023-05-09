@@ -6,24 +6,25 @@ import generateToken from "../middlewares/token.middleware.js"
 
 const signUp = asyncHandler (async(req,res)=>{
     try {
-        const {username,email,displayName,password} = req.body;
-        const checkUser = await userModel.findOne({username});
-        const checkEmail = await userModel.findOne({email});
-        if(checkUser) return responseHandler.badRequest(res, "User already exists");
-        if(checkEmail) return responseHandler.badRequest(res, "Email already exists");
-        const user = new userModel();
-        user.displayName = displayName;
-        user.username = username;
-        user.email = email;
-        user.setPassword(password);
-        await user.save();
+      const { username, displayName, password } = req.body;
+      const checkUser = await userModel.findOne({ username });
+      if (checkUser)
+        return responseHandler.badRequest(res, "User already exists");
+      const user = new userModel();
+      user.displayName = displayName;
+      user.username = username;
+      // user.email = email;
+      user.setPassword(password);
+      await user.save();
 
-        const token = generateToken(user.id);
-        responseHandler.created(res,{
-            token,
-            ...user._doc,
-            id:user.id
-        });
+      const token = jwt.sign({ data: user?.id }, process.env.JWT_SECRET, {
+        expiresIn: "24h",
+      });
+      responseHandler.created(res,{
+          token,
+          ...user._doc,
+          id:user.id
+      });
     } catch {
         responseHandler.error(res);
     }
@@ -32,11 +33,16 @@ const signUp = asyncHandler (async(req,res)=>{
 const signIn = asyncHandler (async(req,res)=>{
     try {
         const {username,password} = req.body;
-        const user = await userModel.findOne({username}).select("username,password,salt,id,displayName,email");
+        const user = await userModel.findOne({username:username}).select("password displayName username id salt");
+        console.log(user);
+
         if(!user) return responseHandler.badRequest(res, "User does not exist!");
 
         if(!user.validPassword(password)) return responseHandler.badRequest(res, "Invalid credentials!");
-        const token = generateToken(user.id);
+        
+        const token = jwt.sign({ data: user?.id }, process.env.JWT_SECRET, {
+          expiresIn: "24h",
+        });
         user.password = undefined; //
         user.salt = undefined;
         responseHandler.created(res, {

@@ -17,12 +17,12 @@ const created = (res,data) => responseWithData(res,201,data);
 
 const unauthorize = (res) => responseWithData(res,401, {
     status:401,
-    message: "You are not authorized"
+    message: "You are not authorized!"
 });
 
 const notFound = (res)=>responseWithData(res,404,{
     status:404,
-    message:"Resource not found"
+    message:"Resource not found!"
 });
 
 export default { error, badRequest, created, unauthorize, notFound, ok };

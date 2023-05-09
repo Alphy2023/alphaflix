@@ -18,17 +18,16 @@ const userApi = {
             return {response}
         } catch (err) {return {err}}
     },
-    signUp: async ({username,password,confirmPassword,email,displayName}) =>{
+    signUp: async ({username,password,confirmPassword,displayName}) =>{
         try {
-            const res = await publicClient.post(userEndpoint.signUp, {
+            const response = await publicClient.post(userEndpoint.signUp, {
               username,
               password,
               confirmPassword,
-              email,
               displayName,
             });
-            return { res };
-        } catch (error) {return {error}}
+            return { response };
+        } catch (err) {return {err}}
     },
     getInfo: async () =>{
         try {

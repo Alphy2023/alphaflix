@@ -16,14 +16,6 @@ userRouter.post(
         const user = await userModel.findOne({username: value})
         if(user) return Promise.reject("Username already taken!")
     }),
-    body("email")
-    .exists().withMessage("Email Address is Required!")
-    .isEmail().withMessage("Invalid Email Address!")
-    .isLength({min:8}).withMessage("Please enter your email address!")
-    .custom(async value=>{
-        const user = await userModel.findOne({email: value})
-        if(user) return Promise.reject("Email already taken!")
-    }),
     body("password")
     .exists().withMessage("Password is Required!")
     .isLength({min:8}).withMessage("Password should be a minimum of 8 characters!"),
@@ -35,8 +27,7 @@ userRouter.post(
             return true;
         }),
     body("displayName")
-    .exists().withMessage("Your Name is Required!")
-    .isLength({min:8}).withMessage("Full name should be a minimum of 8 characters!"),
+    .exists().withMessage("Your Name is Required!"),
     requestHandler.validate,
     userController.signUp
 )
