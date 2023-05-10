@@ -8,7 +8,7 @@ import MediaSearch from "../views/MediaSearch"
 import PasswordUpdate from "../views/PasswordUpdate"
 import ReviewList from "../views/ReviewList"
 import ProtectedPage from "../components/common/ProtectedPage"
-export const routeGen = {
+export const routesGen = {
   home: "/",
   mediaList: (type) => `/${type}`,
   mediaDetail: (type, id) => `/${type}/${id}`,

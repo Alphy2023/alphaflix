@@ -9,7 +9,7 @@ import tokenMiddleware from "../middlewares/token.middleware.js"
 const getList = asyncHandler(async(req,res)=>{
     try {
         const {page} = req.query;
-        const {mediaType,mediaCategory}= req.params;
+        const {mediaType,mediaCategory} = req.params;
         const data = await tmdbApi.mediaList({mediaType,mediaCategory,page});
         return responseHandler.ok(res,data);
     } catch{

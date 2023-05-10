@@ -1,5 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 
+// const getUserFfromLocalStorage = localStorage.getItem("actkn") ? 
+//     JSON.parse(localStorage.getItem("actkn")) : null
 export const userSlice = createSlice({
     name:"User",
     initialState:{
@@ -13,7 +15,7 @@ export const userSlice = createSlice({
             }
             else{
                 if (action.payload?.token)
-                  localStorage.setItem("actkn", action.payload);
+                  localStorage.setItem("actkn", action?.payload.token);
             }
             state.user = action.payload
         },

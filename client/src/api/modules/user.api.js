@@ -31,19 +31,19 @@ const userApi = {
     },
     getInfo: async () =>{
         try {
-            const res = await privateClient.get(userEndpoint.getInfo);
-            return { res };
-        } catch (error) {return {error}}
+            const response = await privateClient.get(userEndpoint.getInfo);
+            return { response };
+        } catch (err) {return {err}}
     },
     passwordUpdate: async ({password,newPassword,confirmNewPassword}) =>{
         try {
-            const res = await privateClient.put(userEndpoint.passwordUpdate, {
+            const response = await privateClient.put(userEndpoint.passwordUpdate, {
               password,
               newPassword,
               confirmNewPassword,
             });
-            return { res };
-        } catch (error) {return {error}}
+            return { response };
+        } catch (err) {return {err}}
     }
 };
 

@@ -4,7 +4,7 @@
 
  const tokenDecode = (req)=>{
     try{
-        const authorization = req.headers["Authorization"];
+        const authorization = req.headers["authorization"];
         if(authorization){
             const token = authorization.split(" ")[1];
             return jwt.verify(token, process.env.JWT_SECRET);
@@ -29,11 +29,6 @@
 
     next();
  };
- const generateToken = (id) => {
-   // call sign function
-   return jwt.sign({ data:id }, process.env.JWT_SECRET, {
-     expiresIn: "24h",
-   });
- };
 
- export default { isAuth, tokenDecode, generateToken };
+
+ export default { isAuth, tokenDecode};
