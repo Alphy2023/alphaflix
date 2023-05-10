@@ -52,6 +52,7 @@ const HeroSlide = ({mediaType, mediaCategory}) =>{
       <Box
         sx={{
           position: "relative",
+          margintTop:"10px",
           color: "primary.contrastText",
           "&::before": {
             content: '""',
@@ -81,7 +82,7 @@ const HeroSlide = ({mediaType, mediaCategory}) =>{
               <Box
                 sx={{
                   paddingTop: {
-                    xs: "130%",
+                    xs: "10%",
                     sm: "80%",
                     md: "60%",
                     lg: "45%",
@@ -125,7 +126,10 @@ const HeroSlide = ({mediaType, mediaCategory}) =>{
                     width: { sm: "unset", md: "30%", lg: "40%" },
                   }}
                 >
-                  <Stack spacing={4} direction="column">
+                  <Stack spacing={4} direction="column"
+                  sx={{
+                    marginTop:{xs: "20px", md:"10px"}
+                  }}>
                     {/* title */}
 
                     <Typography
@@ -134,6 +138,7 @@ const HeroSlide = ({mediaType, mediaCategory}) =>{
                       fontWeight="700"
                       sx={{
                         ...uiConfigs.style.typoLines(2, "left"),
+                        
                       }}
                     >
                       {movie?.title || movie?.name}
@@ -178,7 +183,12 @@ const HeroSlide = ({mediaType, mediaCategory}) =>{
                       component={Link}
                       to={routesGen.mediaDetail(mediaType,movie?.id)}
                       sx={{ 
-                        width:"max-content"
+                        width:"max-content",
+                        // transition: "all 0.3s ease",
+                        // position: "absolute",
+                        // bottom: "-50%",
+                        // left: "50%",
+                        // transform: "translate(-50%, -50%)",
                        }}
                     >
                       watch now

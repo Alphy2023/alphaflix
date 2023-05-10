@@ -62,7 +62,8 @@ const getDetail = asyncHandler(async(req,res)=>{
         }
         media.reviews = await reviewModel.findOne({mediaId}).populate("user").sort("-createdAt");
         return responseHandler.ok(res,media);
-    } catch{
+    } catch (e){
+        console.log(e)
         responseHandler.error(res);
     }
 });
