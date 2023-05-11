@@ -23,15 +23,18 @@ const addFavourite = asyncHandler(async(req,res)=>{
 });
 const removeFavourite = asyncHandler(async(req,res)=>{
     try {
-        const {favouritId} = req.params;
-        const favourite = await favModel.findOne({
-            user:req.user.id,
-            _id:favouritId
+        const {favouriteId} = req.params;
+        // const id = req.user.id;
+        const favourite = await favouriteModel.findOneAndDelete({
+          _id: favouriteId,
+          user: req.user.id
         });
-        if(!favouritId) return responseHandler.notFound(res);
-        await favourite.remove();
+        // console.log(favourite);
+        if(!favourite) {
+            return responseHandler.notFound(res);
+        }
         responseHandler.ok(res);
-    } catch {
+    } catch  {
         responseHandler.error(res);
     }
 });

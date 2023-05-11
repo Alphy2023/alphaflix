@@ -44,7 +44,53 @@ const MediaDetail = () => {
       if(err) toast.error(err?.message)
     };
     getMedia(); 
-  },[mediaType,mediaId,dispatch ])
+  },[mediaType,mediaId,dispatch ]);
+  const onFavouriteClick = async () =>{
+    if(!user) dispatch(setAuthModalOpen(true));
+
+    if(onRequest) return;
+
+    if(isFavorite){
+      onRemoveFavourite();
+      return;
+    } 
+    setOnRequest(true);
+
+    const body = {
+      mediaId: media?.id,
+      mediaType: mediaType,
+      mediaPoster: media?.poster_path,
+      mediaRate: media?.vote_average,
+      mediaTitle: media?.title || media?.name
+    }
+    const {response,err} = await favouriteApi.add(body);
+
+    setOnRequest(false);
+    if(err) toast.error(err?.message)
+    if(response){
+      dispatch(addFavourite(response));
+      setIsFavorite(true)
+      toast.success("Successfully added to favourite!")
+    }
+  }
+  const onRemoveFavourite = async () =>{
+    if(onRequest) return;
+    setOnRequest(true);
+
+    const favorite = listFavourites?.find(
+      (e) => e.mediaId?.toString() === media?.id?.toString()
+    );
+    const {response,err} = await favouriteApi.remove({favouriteId:favorite?.id})
+  
+    if(err) toast.error(err.massage);
+    if(response){
+      dispatch(removeFavourite(favorite));
+      setIsFavorite(false);
+      setOnRequest(false);
+      toast.success("Remove favorite success!");
+    }
+
+  }
   return (
 
    media ? (
@@ -155,6 +201,7 @@ const MediaDetail = () => {
                   <FavoriteBorderOutlinedIcon/>}
                   loadingPosition="start"
                   loading={onRequest}
+                  onClick={onFavouriteClick}
 
                   />
                   <Button

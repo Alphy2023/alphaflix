@@ -34,8 +34,6 @@ const signIn = asyncHandler (async(req,res)=>{
     try {
         const {username,password} = req.body;
         const user = await userModel.findOne({username:username}).select("password displayName username id salt");
-        console.log(user);
-
         if(!user) return responseHandler.badRequest(res, "User does not exist!");
 
         if(!user.validPassword(password)) return responseHandler.badRequest(res, "Invalid credentials!");

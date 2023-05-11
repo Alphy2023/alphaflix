@@ -93,7 +93,7 @@ userRouter.post(
     favouriteController.addFavourite
 );
 userRouter.delete(
-  "/favourite/:favouriteId",
+  "/favourites/:favouriteId",
   tokenMiddleware.isAuth,
   favouriteController.removeFavourite
 );
