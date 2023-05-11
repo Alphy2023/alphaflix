@@ -20,6 +20,7 @@ import {setAuthModalOpen} from "../redux/features/authModalSlice"
 import {addFavourite,removeFavourite} from "../redux/features/userSlice"
 import CastSlide from "../components/common/CastSlide"
 import CustomHelmet from "../components/common/CustomHelmet"
+import MediaVideoSlide from "../components/common/MediaVideoSlide";
 const MediaDetail = () => {
   const {mediaType,mediaId} = useParams();
   const {user,listFavourites} = useSelector((state)=>state.auth);
@@ -227,6 +228,13 @@ const MediaDetail = () => {
           </Box>
         </Box>
         {/* media content */}
+        {/* media videos */}
+        <div ref={videoRef} style={{paddingTop:"2rem"}}>
+            <Container header="videos">
+                <MediaVideoSlide videos={media?.videos?.results}/>
+            </Container>
+        </div>
+        {/* media videos */}
       </Box>
     </>
   ) : null
