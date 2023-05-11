@@ -69,19 +69,19 @@ const HeroSlide = ({mediaType, mediaCategory}) =>{
         <Swiper
           grabCursor={true}
           loop={true}
-            modules={[Autoplay]}
+          modules={[Autoplay]}
           style={{ width: "100%", height: "max-content" }}
-            autoplay={{
-              delay: 3000,
-              disableOnInteraction: false,
-            }}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+          }}
         >
           {movies?.map((movie, index) => (
             <SwiperSlide key={index}>
               <Box
                 sx={{
                   paddingTop: {
-                    xs: "10%",
+                    xs: "160%",
                     sm: "80%",
                     md: "60%",
                     lg: "45%",
@@ -91,6 +91,7 @@ const HeroSlide = ({mediaType, mediaCategory}) =>{
                   backgroundImage: `url(${tmdbConfigs.backdropPath(
                     movie?.backdrop_path || movie?.poster_path
                   )})`,
+                
                 }}
               />
               <Box
@@ -125,10 +126,13 @@ const HeroSlide = ({mediaType, mediaCategory}) =>{
                     width: { sm: "unset", md: "30%", lg: "40%" },
                   }}
                 >
-                  <Stack spacing={4} direction="column"
-                  sx={{
-                    marginTop:{xs: "20px", md:"10px"}
-                  }}>
+                  <Stack
+                    spacing={4}
+                    direction="column"
+                    sx={{
+                      marginTop: { xs: "20px", md: "10px" },
+                    }}
+                  >
                     {/* title */}
 
                     <Typography
@@ -137,7 +141,6 @@ const HeroSlide = ({mediaType, mediaCategory}) =>{
                       fontWeight="700"
                       sx={{
                         ...uiConfigs.style.typoLines(2, "left"),
-                        
                       }}
                     >
                       {movie?.title || movie?.name}
@@ -180,15 +183,15 @@ const HeroSlide = ({mediaType, mediaCategory}) =>{
                       size="large"
                       startIcon={<PlayArrowIcon />}
                       component={Link}
-                      to={routesGen.mediaDetail(mediaType,movie?.id)}
-                      sx={{ 
-                        width:"max-content",
+                      to={routesGen.mediaDetail(mediaType, movie?.id)}
+                      sx={{
+                        width: "max-content",
                         // transition: "all 0.3s ease",
                         // position: "absolute",
                         // bottom: "-50%",
                         // left: "50%",
                         // transform: "translate(-50%, -50%)",
-                       }}
+                      }}
                     >
                       watch now
                     </Button>
