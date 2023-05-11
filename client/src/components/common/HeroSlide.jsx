@@ -81,7 +81,7 @@ const HeroSlide = ({mediaType, mediaCategory}) =>{
               <Box
                 sx={{
                   paddingTop: {
-                    xs: "160%",
+                    xs: "165%",
                     sm: "80%",
                     md: "60%",
                     lg: "45%",

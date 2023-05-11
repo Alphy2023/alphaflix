@@ -55,7 +55,7 @@ const MediaItem = ({media,mediaType}) =>{
             ...uiConfigs.style.backgroundImage(posterPath),
             paddingTop: "160%",
             "&:hover .media-info": { opacity: 1, bottom: 0 },
-            "&:hover .media-back-drop, &:hover .media-play-btn": { opacity: 1 },
+            " &:hover .media-play-btn, &:hover .media-backdrop": { opacity: 1 },
             color: "primary.contrastText",
           }}
         >
@@ -76,17 +76,17 @@ const MediaItem = ({media,mediaType}) =>{
             </>
           )}
           <Box
-            className="media-back-drop"
+            className="media-backdrop"
             sx={{
               opacity: { xs: 1, md: 0 },
               transition: "all 0.3s ease",
-              widht: "100%",
+              width: "100%",
               height: "100%",
               position: "absolute",
               top: 0,
               left: 0,
               backgroundImage:
-                "linear-gradient(to top, rgba(0,0,0,1),rgba(0,0,0,0))"
+                "linear-gradient(to right, rgba(0,0,0,1),rgba(0,0,0,0))",
             }}
           />
           <Button
@@ -122,34 +122,33 @@ const MediaItem = ({media,mediaType}) =>{
 
               <Typography>{releaseDate}</Typography>
               <Typography
-              variant="body1"
-              fontWeight="700"
-              sx={{
-                fontSize:"1rem",
-                ...uiConfigs.style.typoLines(1, "left")
-              }}
-              >{title}</Typography>
+                variant="body1"
+                fontWeight="700"
+                sx={{
+                  fontSize: "1rem",
+                  ...uiConfigs.style.typoLines(1, "left"),
+                }}
+              >
+                {title}
+              </Typography>
             </Stack>
           </Box>
           {/* movie or tv item */}
           {/* people */}
           {mediaType === "people" && (
             <Box
-            sx={{ 
-                position:"absolute",
-                width:"100%",
-                height:"max-content",
-                bottom:0,
-                padding:"10px",
-                backgroundColor:"rgba(0,0,0,0.6)"
-             }}
+              sx={{
+                position: "absolute",
+                width: "100%",
+                height: "max-content",
+                bottom: 0,
+                padding: "10px",
+                backgroundColor: "rgba(0,0,0,0.6)",
+              }}
             >
-                <Typography
-                sx={{ ...uiConfigs.style.typoLines(1, "left") }}
-                >
-                    {media?.name}
-                </Typography>
-
+              <Typography sx={{ ...uiConfigs.style.typoLines(1, "left") }}>
+                {media?.name}
+              </Typography>
             </Box>
           )}
           {/* people */}
