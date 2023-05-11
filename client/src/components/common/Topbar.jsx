@@ -15,9 +15,9 @@ import Sidebar from "./Sidebar";
 const ScrollAppBar = ({children,window})=>{
     const { themeMode } = useSelector((state) => state.themeMode);  
     const trigger = useScrollTrigger({
-        disabledHysteresis:true,
+        disableHysteresis:true,
         threshold:50,
-        target: window ? window() :undefined
+        target: window ? window() : undefined
     });
     return cloneElement(children, {
       sx: {
@@ -28,10 +28,10 @@ const ScrollAppBar = ({children,window})=>{
           : "text.primary",
         backgroundColor: trigger
           ? "background.paper"
-          : themeMode === themeMode.dark
+          : themeMode === themeModes.dark
           ? "transparent"
-          : "background.paper",
-      },
+          : "background.paper"
+      }
     });
 }
 
@@ -53,7 +53,7 @@ const Topbar = () => {
     <>
     <Sidebar open={sidebarOpen} toggleSidebar={toggleSidebar}/>
       <ScrollAppBar>
-        <AppBar elevation={0} sx={{ zIndex: 999999 }}>
+        <AppBar elevation={0} sx={{ zIndex: 9999 }}>
           <Toolbar
             sx={{ alignItems: "center", justifyContent: "space-between" }}
           >

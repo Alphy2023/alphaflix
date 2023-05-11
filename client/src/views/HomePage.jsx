@@ -8,7 +8,7 @@ import MediaSlide from "../components/common/MediaSlide"
 const HomePage = () => {
   return (
     <>
-      <CustomHelmet title="AlphaFlix" />
+      <CustomHelmet title="AlphyFlix" />
 
       <HeroSlide
         mediaType={tmdbConfigs.mediaType.movie}
