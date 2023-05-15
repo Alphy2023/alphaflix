@@ -186,6 +186,7 @@ const HeroSlide = ({mediaType, mediaCategory}) =>{
                       to={routesGen.mediaDetail(mediaType, movie?.id)}
                       sx={{
                         width: "max-content",
+                        zIndex:9999
                         // transition: "all 0.3s ease",
                         // position: "absolute",
                         // bottom: "-50%",

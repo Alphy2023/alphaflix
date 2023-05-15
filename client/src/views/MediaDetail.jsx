@@ -21,6 +21,10 @@ import {addFavourite,removeFavourite} from "../redux/features/userSlice"
 import CastSlide from "../components/common/CastSlide"
 import CustomHelmet from "../components/common/CustomHelmet"
 import MediaVideoSlide from "../components/common/MediaVideoSlide";
+import BackdropSlide from "../components/common/BackdropSlide";
+import PosterSlide from "../components/common/PosterSlide";
+import RecommendSlide from "../components/common/RecommendSlide";
+import MediaSlide from "../components/common/MediaSlide";
 const MediaDetail = () => {
   const {mediaType,mediaId} = useParams();
   const {user,listFavourites} = useSelector((state)=>state.auth);
@@ -231,10 +235,42 @@ const MediaDetail = () => {
         {/* media videos */}
         <div ref={videoRef} style={{paddingTop:"2rem"}}>
             <Container header="videos">
-                <MediaVideoSlide videos={media?.videos?.results}/>
+                <MediaVideoSlide videos={media?.videos?.results?.splice(0, 5)}/>
             </Container>
         </div>
         {/* media videos */}
+
+        {/* media backdrop */}
+        {media?.images?.backdrops?.length > 0 && (
+          <Container header="backdrops">
+            <BackdropSlide backdrops={media?.images?.backdrops} />
+            </Container>
+        )}
+        {/* media backdrop */}
+        {/* media posters */}
+        {media?.images?.posters?.length > 0 && (
+          <Container header="posters">
+            <PosterSlide posters={media?.images?.posters}/>
+          </Container>
+        )}
+        {/* media posters */}
+
+        {/* media reviews */}
+        {/* media reviews */}
+        {/* media recommendations */}
+        <Container header="you may also like">
+          {media?.recommend?.length > 0 && (
+            <RecommendSlide medias={media?.recommend} mediaType={mediaType}/>
+          )}
+          {media?.recommend?.length === 0 && (
+            <MediaSlide
+            mediaType={mediaType}
+            mediaCategory={tmdbConfigs?.mediaCategory.top_rated}
+            />
+          )}
+        </Container>
+
+        {/* media recommendations */}
       </Box>
     </>
   ) : null

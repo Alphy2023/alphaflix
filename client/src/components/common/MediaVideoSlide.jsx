@@ -30,7 +30,6 @@ const MediaVideo = ({video}) =>{
 }
 
 const MediaVideoSlide = ({videos}) =>{
-    console.log(videos)
     return (
        <NavigationSwiper>
         {
