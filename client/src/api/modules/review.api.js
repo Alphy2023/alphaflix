@@ -15,6 +15,7 @@ const reviewApi ={
         content
     })=>{
         try {
+            
             const response = await privateClient.post(reviewEndPoints.add, {
             mediaId,
             mediaType,
@@ -22,6 +23,7 @@ const reviewApi ={
             mediaPoster,
             content,
             });
+            
             return { response };
         } catch (err) {return {err}}
        

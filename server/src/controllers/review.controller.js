@@ -3,6 +3,7 @@ import asyncHandler from "express-async-handler";
 import reviewModel from "../models/review.model.js";
 
 const create = asyncHandler(async(req,res)=>{
+    console.log(req)
     try {
         const {movieId} = req.params;
         const review = new reviewModel({

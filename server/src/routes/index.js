@@ -11,6 +11,6 @@ router.use("/user",userRouter);
 // media routes
 router.use("/:mediaType",mediaRouter);
 router.use("/person",personRouter);
-router.use("reviews",reviewsRouter);
+router.use("/reviews",reviewsRouter);
 
 export default router;

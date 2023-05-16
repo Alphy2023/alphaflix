@@ -25,6 +25,7 @@ import BackdropSlide from "../components/common/BackdropSlide";
 import PosterSlide from "../components/common/PosterSlide";
 import RecommendSlide from "../components/common/RecommendSlide";
 import MediaSlide from "../components/common/MediaSlide";
+import MediaReview from "../components/common/MediaReview";
 const MediaDetail = () => {
   const {mediaType,mediaId} = useParams();
   const {user,listFavourites} = useSelector((state)=>state.auth);
@@ -256,6 +257,8 @@ const MediaDetail = () => {
         {/* media posters */}
 
         {/* media reviews */}
+        <MediaReview reviews={media?.reviews === null ? [] : media?.reviews !==null} media={media} 
+        mediaType={mediaType}/>
         {/* media reviews */}
         {/* media recommendations */}
         <Container header="you may also like">
