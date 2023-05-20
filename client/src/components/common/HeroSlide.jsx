@@ -61,7 +61,6 @@ const HeroSlide = ({mediaType, mediaCategory}) =>{
             bottom: 0,
             left: 0,
             zIndex: 2,
-            pointerEvent: "none",
             ...uiConfigs.style.gradientBgImage[theme.palette.mode],
           },
         }}
@@ -169,7 +168,7 @@ const HeroSlide = ({mediaType, mediaCategory}) =>{
                     </Stack>
                     {/* overflow */}
                     <Typography
-                      variant="body1"
+                      variant="body2"
                       sx={{
                         ...uiConfigs.style.typoLines(3),
                       }}
@@ -185,16 +184,10 @@ const HeroSlide = ({mediaType, mediaCategory}) =>{
                       component={Link}
                       to={routesGen.mediaDetail(mediaType, movie?.id)}
                       sx={{
-                        width: "max-content",
-                        zIndex:9999
-                        // transition: "all 0.3s ease",
-                        // position: "absolute",
-                        // bottom: "-50%",
-                        // left: "50%",
-                        // transform: "translate(-50%, -50%)",
+                        width: "max-content"
                       }}
                     >
-                      watch now
+                      watch
                     </Button>
                     {/* buttons */}
                   </Stack>

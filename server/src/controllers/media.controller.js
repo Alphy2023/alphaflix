@@ -60,10 +60,9 @@ const getDetail = asyncHandler(async(req,res)=>{
                 media.isFavourite = isFavourite !==null;
             }
         }
-        media.reviews = await reviewModel.findOne({mediaId}).populate("user").sort("-createdAt");
+        media.reviews = await reviewModel.find({mediaId}).populate("user").sort("-createdAt");
         return responseHandler.ok(res,media);
     } catch (e){
-        console.log(e)
         responseHandler.error(res);
     }
 });

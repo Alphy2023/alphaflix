@@ -9,71 +9,70 @@ import {useSelector,useDispatch} from "react-redux";
 import Container from "./Container";
 import reviewApi from "../../api/modules/review.api";
 import TextAvatar from "./TextAvatar"
-const ReviewItem = ({review, onRemoved}) =>{
-    const {user} = useSelector((state)=>state.auth);
+const ReviewItem = ({ review, onRemoved }) => {
+  const { user } = useSelector((state) => state.auth);
 
-    const [onRequest,setOnRequest] = useState(false);
-    
-    const onRemove = async () =>{
-        if(onRequest) return;
+  const [onRequest, setOnRequest] = useState(false);
 
-        setOnRequest(true);
+  const onRemove = async () => {
+    if (onRequest) return;
 
-        const {response,err} = await reviewApi.remove({reviewId:review?.id})
+    setOnRequest(true);
 
-        if(err) toast.error(err?.message);
-        if(response) onRemoved(review?.id)
+    const { response, err } = await reviewApi.remove({ reviewId: review?.id });
 
-        return (
-          <Box
-            sx={{
-              padding: 2,
-              borderRadius: "5px",
-              position: "relative",
-              opacity: onRequest ? 0.6 : 1,
-              "&:hover": { backgroundColor: "background.paper" },
-            }}
-          >
-            <Stack direction="row" spacing={2}>
-              {/* avatar */}
-              <TextAvatar text={review?.user?.displayName}/>
-              {/* avatar */}
-              <Stack spacing={2} flexGrow={1}>
-                <Stack spacing={1}>
-                  <Typography variant="h6" fontWeight="700">
-                    {review?.user?.displayName}
-                  </Typography>
-                  <Typography variant="caption">
-                    {dayjs(review?.createdAt).format("DD-MM-YYYY HH:mm")}
-                  </Typography>
-                </Stack>
-                <Typography variant="body1" textAlign="justify">
-                  {review?.content}
-                </Typography>
-                {user && user?.id === review?.user?.id && (
-                  <LoadingButton
-                    variant="contained"
-                    startIcon={DeleteIcon}
-                    loadinPosition="start"
-                    loading={onRequest}
-                    onClick={onRemove}
-                    sx={{
-                      position: { xs: "relative", md: "absolute" },
-                      right:{xs:0,md:"10px"},
-                      marginTop:{xs:2, md:0},
-                      width:"max-content"
-                    }}
-                  >
-                    remove
-                  </LoadingButton>
-                )}
-              </Stack>
-            </Stack>
-          </Box>
-        );
-    }
-}
+    if (err) toast.error(err?.message);
+    if (response) onRemoved(review?.id);
+  };
 
+  return (
+    <Box
+      sx={{
+        padding: 2,
+        borderRadius: "5px",
+        position: "relative",
+        opacity: onRequest ? 0.6 : 1,
+        "&:hover": { backgroundColor: "background.paper" },
+      }}
+    >
+      <Stack direction="row" spacing={2}>
+        {/* avatar */}
+        <TextAvatar text={review?.user?.displayName} />
+        {/* avatar */}
+        <Stack spacing={2} flexGrow={1}>
+          <Stack spacing={1}>
+            <Typography variant="h6" fontWeight="700">
+              {review?.user?.displayName}
+            </Typography>
+            <Typography variant="caption">
+              {dayjs(review?.createdAt).format("DD-MM-YYYY HH:mm")}
+            </Typography>
+          </Stack>
+          <Typography variant="body1" textAlign="justify">
+            {review?.content}
+          </Typography>
+          {user && user?.id === review?.user?.id && (
+            <LoadingButton
+              variant="contained"
+              startIcon={<DeleteIcon/>}
+              loadingPosition="start"
+              loading={onRequest}
+              onClick={onRemove}
+              sx={{
+                position: { xs: "relative", md: "absolute" },
+                right: { xs: 0, md: "10px" },
+                marginTop: { xs: 2, md: 0 },
+                width: "max-content",
+              }}
+            >
+              remove
+            </LoadingButton>
+          )}
+        </Stack>
+      </Stack>
+    </Box>
+  )
+};
 const MediaReview = ({reviews, media, mediaType}) =>{
     const {user} = useSelector((state)=>state.auth)
     const [listReviews,setListReviews] = useState([])
@@ -84,7 +83,6 @@ const MediaReview = ({reviews, media, mediaType}) =>{
     const [reviewCount, setReviewCount] = useState(0);
 
     const skip = 4;
-
     useEffect(() => {
         setListReviews([...reviews]);
         // setListReviews(reviews);
@@ -140,7 +138,7 @@ const MediaReview = ({reviews, media, mediaType}) =>{
 
     return (
       <>
-        <Container header={`Reviews ${reviewCount}`}>
+        <Container header={`Reviews (${reviewCount})`}>
           <Stack spacing={4} marginBottom={2}>
             {filteredReviews?.map((item) => (
               <Box key={item?.id}>
@@ -161,35 +159,37 @@ const MediaReview = ({reviews, media, mediaType}) =>{
               <Divider />
               <Stack direction="row" spacing={2}>
                 <TextAvatar text={user?.displayName} />
-                <Typography variant="h6" fontWeight="700">
-                  {user?.displayName}
-                </Typography>
-                <TextField
-                  value={content}
-                  onChange={(e) => setContent(e.target.value)}
-                  multiline
-                  rows={4}
-                  placeholder="Write your review here..."
-                  variant="outlined"
-                />
+                <Stack spacing={2} flexGrow={1}>
+                  <Typography variant="h6" fontWeight="700">
+                    {user?.displayName}
+                  </Typography>
+                  <TextField
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                    multiline
+                    rows={4}
+                    placeholder="Write your review here..."
+                    variant="outlined"
+                  />
+                  <LoadingButton
+                    variant="contained"
+                    size="large"
+                    sx={{
+                      width: "max-content",
+                    }}
+                    startIcon={<SendOutlinedIcon />}
+                    loadingPosition="start"
+                    loading={onRequest}
+                    onClick={onAddReview}
+                  >
+                    post
+                  </LoadingButton>
+                </Stack>
               </Stack>
-              <LoadingButton
-                variant="contained"
-                size="large"
-                sx={{
-                  width: "max-content",
-                }}
-                startIcon={<SendOutlinedIcon />}
-                loadingPosition="start"
-                loading={onRequest}
-                onClick={onAddReview}
-              >
-                post
-              </LoadingButton>
             </>
           )}
         </Container>
       </>
-    )
+    );
 }
 export default MediaReview;
