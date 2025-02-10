@@ -1,13 +1,13 @@
 {
-  "name":"alphaflix",
-  "type":"module",
-  "version":"1.0.0",
-  "author":"Alphonce Omondi",
-  "main":"index.js",
-  "license":"MIT",
-  "scripts":{
-    "start":"node index.js",
-    "server":"nodemon index.js"
+  "name": "alphaflix",
+  "type": "module",
+  "version": "1.0.0",
+  "author": "Alphonce Omondi",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "server": "nodemon index.js"
   },
   "dependencies": {
     "axios": "^1.4.0",
@@ -21,7 +21,7 @@
     "express-async-handler": "^1.2.0",
     "express-validator": "^7.0.1",
     "jsonwebtoken": "^9.0.0",
-    "mongoose": "^7.1.0",
+    "mongoose": "^8.10.0",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.1",
