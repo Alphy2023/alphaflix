@@ -49,7 +49,7 @@ const SignInForm = ({ switchAuthState }) => {
         toast.success("Sign in successful.");
       }
 
-      if(err) setErrorMessage(err.message)
+      if(err) setErrorMessage(err?.message)
     }
   });
   return (
@@ -102,7 +102,6 @@ const SignInForm = ({ switchAuthState }) => {
         variant="contained"
         sx={{ marginTop: 4 }}
         loading={isLoginRequest}
-        // loadingIndicator="Please wait....."
       >
         sign in
       </LoadingButton>

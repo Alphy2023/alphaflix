@@ -2,6 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 
 // const getUserFfromLocalStorage = localStorage.getItem("actkn") ? 
 //     JSON.parse(localStorage.getItem("actkn")) : null
+
 export const userSlice = createSlice({
     name:"User",
     initialState:{

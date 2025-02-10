@@ -1,7 +1,7 @@
 import {Grid} from "@mui/material";
 
 import MediaItem from "./MediaItem"
-const MediaGrid = ({ medias, mediaType, lastMediaRef, onLoadMore }) => {
+const MediaGrid = ({ medias, mediaType, lastMediaRef }) => {
   return (
     <Grid
       container

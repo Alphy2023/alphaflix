@@ -1,5 +1,4 @@
 import publicClient from "../client/public.client";
-
 const personEndpoints = {
     detail:({personId})=>`person/${personId}`,
     medias:({personId})=>`person/${personId}/medias`
@@ -9,6 +8,7 @@ const personApi = {
     detail:async ({personId})=>{
         try {
             const response = await publicClient.get(personEndpoints.detail({personId}));
+            console.log(response)
             return {response};
         } catch (err) {
             return {err}

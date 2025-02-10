@@ -129,17 +129,6 @@ const MediaList = () => {
           </Stack>
         </Stack>
         <MediaGrid medias={medias} mediaType={mediaType} />
-        {/* <LoadingButton
-          sx={{
-            marginTop: 8,
-          }}
-          fullWidth
-          color="primary"
-          loading={mediaLoading}
-          onClick={onLoadMore}
-        >
-          load more
-        </LoadingButton> */}
         {medias?.length > 0 && (
           <Stack
             spacing={2}
