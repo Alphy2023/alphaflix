@@ -2,7 +2,6 @@ import favouriteModel from "../models/favourite.model.js";
 import responseHandler from "../handlers/response.handler.js";
 import asyncHandler from "express-async-handler";
 
-const test="";
 
 const addFavourite = asyncHandler(async(req,res)=>{
     try {
