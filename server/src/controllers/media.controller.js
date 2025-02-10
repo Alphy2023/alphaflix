@@ -31,7 +31,8 @@ const search = asyncHandler(async(req,res)=>{
     try {
         const {mediaType}= req.params;
         const {query,page}= req.query;
-        const data = await tmdbApi.mediaSearch({ query, page, mediaType:mediaType==='people'?'person':mediaType });
+        const data = await tmdbApi.mediaSearch({ query, page, 
+            mediaType:mediaType==='people'?'person':mediaType });
         return responseHandler.ok(res,data);
     } catch{
         responseHandler.error(res);

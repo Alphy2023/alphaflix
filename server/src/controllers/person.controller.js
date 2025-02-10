@@ -5,10 +5,12 @@ import tmdbApi from "../tmdb/tmdb.api.js";
 const personDetail = asyncHandler(async(req,res)=>{
     try {
         const {personId} = req.params;
-        const person = await tmdbApi.personDetail({personId});
+        console.log(req);
+        const person = await tmdbApi.personDetail({ personId });
         responseHandler.ok(res,person);
-    } catch {
-        responseHandler.error(res);
+    } catch (error) {
+        console.log(error)
+        // responseHandler.error(error);
     }
 });
 const personMedias = asyncHandler(async(req,res)=>{
