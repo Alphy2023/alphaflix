@@ -32,8 +32,6 @@ async function connectDB() {
         await mongoose.connect(process.env.MONGODB_URL, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
-            keepAlive: true, // Prevent dropped connections
-            keepAliveInitialDelay: 300000, // 5 minutes
         });
 
         isConnected = true;
